@@ -31,7 +31,7 @@ public class CrawlingTest {
             Iterator<WebElement> titleIter = titleElements.iterator();
             Iterator<WebElement> singerIter = singerElements.iterator();
 
-            for (int count = 1; count < 10; count++) {
+            for (int count = 1; count < 30; count++) {
                 System.out.print(count + "위 ");
                 WebElement singer = singerIter.next();
                 WebElement title = titleIter.next();
