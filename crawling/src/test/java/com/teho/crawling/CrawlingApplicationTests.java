@@ -8,12 +8,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest()
 class CrawlingApplicationTests {
     @Autowired
-    CrawlingTest crawlingTest;
+    CrawlingService crawlingTest;
 
 
     @Test
     void crawling_test() {
-        crawlingTest.crawling();
+        crawlingTest.crawling(30);
     }
 
 }
