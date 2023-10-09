@@ -26,8 +26,7 @@ public class CrawlingController {
             rank = 30;
             log.info("rank => {}", rank);
         }
-        List<CrawlingService.RankInfo> rankList = crawlingService.crawling(rank);
-        return rankList;
+        return crawlingService.crawling(rank);
     }
 
     @GetMapping(value = {"/", "/{rank}"})
