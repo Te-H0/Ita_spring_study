@@ -1,5 +1,6 @@
 package com.teho.crawling;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -34,19 +35,17 @@ public class CrawlingService {
 
             ExpectedConditions.presenceOfElementLocated(By.className("rank01"));
             //Thread.sleep(5000);
+            log.info("crawling Start");
             List<WebElement> titleElements = driver.findElements(By.className("rank01"));
             List<WebElement> singerElements = driver.findElements(By.className("rank02"));
             Iterator<WebElement> titleIter = titleElements.iterator();
             Iterator<WebElement> singerIter = singerElements.iterator();
 
             for (int i = 1; i <= count; i++) {
-                System.out.print(i + "위 ");
+
                 WebElement singer = singerIter.next();
                 WebElement title = titleIter.next();
-                String content = (singer.getText() + " - " + title.getText());
-                System.out.print(singer.getText() + " - ");
-                System.out.println(title.getText());
-                RankInfo rankInfo = new RankInfo(i + "위", content);
+                RankInfo rankInfo = new RankInfo(i, title.getText(), singer.getText());
                 chart.add(rankInfo);
             }
 
@@ -54,21 +53,23 @@ public class CrawlingService {
             log.error(e.getMessage());
             e.printStackTrace();
         } finally {
-            log.info("finish crawling");
             driver.close();
             driver.quit();
-            log.info("here?");
+            log.info("finish crawling");
         }
         return chart;
     }
 
+    @Getter
     public static class RankInfo {
-        public String rank;
-        public String songInfo;
+        public String title;
+        public String singer;
+        int rank;
 
-        public RankInfo(String rank, String songInfo) {
+        public RankInfo(int rank, String title, String singer) {
             this.rank = rank;
-            this.songInfo = songInfo;
+            this.title = title;
+            this.singer = singer;
         }
     }
 }

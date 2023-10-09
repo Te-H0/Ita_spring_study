@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            margin: 0 auto;
+            width: 500px;
+        }
+
+        table {
+            border-top: 1px solid #444444;
+            border-collapse: collapse;
+        }
+
+        caption {
+            margin: 50px;
+            font-size: xx-large;
+            font-weight: bold;
+        }
+
+        th, td {
+            height: 40px;
+            border-bottom: 1px solid #444444;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <caption th:text="|멜론 차트 TOP${rankInfo.size}|"></caption>
+    <tr>
+        <th>순위</th>
+        <th style="width: 300px">제목</th>
+        <th>가수</th>
+    </tr>
+    <tr th:each="info : ${rankInfo}">
+        <td style="text-align: center" th:text="${info.rank}"></td>
+        <td style="text-align: center; width: 300px" th:text="${info.title}"></td>
+        <td style="text-align: center" th:text="${info.singer}"></td>
+    </tr>
+</table>
+</body>
+</html>
